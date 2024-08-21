@@ -2,7 +2,6 @@ import { reponseData } from "../config/reponse.js";
 import sequelize from "../models/connect.js";
 import { Op } from 'sequelize';
 import initModels from "../models/init-models.js";
-import multer, {diskStorage} from 'multer';
 
 const model = initModels(sequelize);
 
@@ -75,19 +74,6 @@ export const delPicture = async (req, res) => {
 }
 
 // Thêm hình ảnh
-// Upload
-const upload = multer({
-    storage: diskStorage({
-        destination: process.cwd() + "/public/imgs",
-        filename: (req, file, callback) => {
-            let newName = new Date().getTime() + "_" + file.originalname;
-            callback(null, newName)
-        }
-
-    })
-})
-
-// Add
 export const addPicture =  async (req, res) => {
     try {
         let file = req.file;
