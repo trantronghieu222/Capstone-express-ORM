@@ -2,6 +2,7 @@ import { reponseData } from "../config/reponse.js";
 import sequelize from "../models/connect.js";
 import { Op } from 'sequelize';
 import initModels from "../models/init-models.js";
+import multer, {diskStorage} from 'multer';
 
 const model = initModels(sequelize);
 
@@ -70,5 +71,47 @@ export const delPicture = async (req, res) => {
         reponseData("", "Thành công", 200, res);
     } catch (error) {
         reponseData("", "Lỗi khi xoá", 400, res);
+    }
+}
+
+// Thêm hình ảnh
+// Upload
+const upload = multer({
+    storage: diskStorage({
+        destination: process.cwd() + "/public/imgs",
+        filename: (req, file, callback) => {
+            let newName = new Date().getTime() + "_" + file.originalname;
+            callback(null, newName)
+        }
+
+    })
+})
+
+// Add
+export const addPicture =  async (req, res) => {
+    try {
+        let file = req.file;
+        let { imgName, description, userId } = req.body;
+
+        if (!file || !imgName || !userId) {
+            return res.status(400).send('Thiếu thông tin bắt buộc');
+        }
+
+        // Đường dẫn đến file đã upload
+        let filePath = file.filename;
+
+        // Thêm thông tin ảnh vào bảng `hinh_anh` bằng cách sử dụng `.create`
+        const newImage = await model.hinh_anh.create({
+            ten_hinh: imgName,
+            duong_dan: filePath,
+            mo_ta: description,
+            nguoi_dung_id: userId
+        });
+
+        reponseData(newImage, "Thêm thành công", 200, res);
+    } catch (error) {
+        console.error(error);
+        reponseData("", "Đã xảy ra lỗi trong quá trình upload", 500, res);
+
     }
 }
