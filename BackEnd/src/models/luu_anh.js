@@ -6,21 +6,21 @@ export default class luu_anh extends Model {
   return super.init({
     nguoi_dung_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
+      primaryKey: true,
       references: {
         model: 'nguoi_dung',
         key: 'nguoi_dung_id'
-      },
-      primaryKey: true
+      }
     },
     hinh_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
+      primaryKey: true,
       references: {
         model: 'hinh_anh',
         key: 'hinh_id'
-      },
-      primaryKey: true
+      }
     },
     ngay_luu: {
       type: DataTypes.DATEONLY,
@@ -32,17 +32,19 @@ export default class luu_anh extends Model {
     timestamps: false,
     indexes: [
       {
-        name: "nguoi_dung_id",
+        name: "PRIMARY",
+        unique: true,
         using: "BTREE",
         fields: [
+          { name: "hinh_id" },
           { name: "nguoi_dung_id" },
         ]
       },
       {
-        name: "hinh_id",
+        name: "nguoi_dung_id",
         using: "BTREE",
         fields: [
-          { name: "hinh_id" },
+          { name: "nguoi_dung_id" },
         ]
       },
     ]

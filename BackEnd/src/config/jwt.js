@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken'
 
 export const createToken = (data) => {
-    return jwt.sign({ data: data }, "NODE_43", { algorithm: "HS256", expiresIn: "5d" })
+    return jwt.sign({ data: data }, "Capstone_ExpressJS_TranTrongHieu", { algorithm: "HS256", expiresIn: "5d" })
 }
 
 export const verifyToken = (token) => {
-    return jwt.verify(token, "s3cR3t!kEy#12345&jwT!@#", (error) => { return error })
+    return jwt.verify(token, "Capstone_ExpressJS_TranTrongHieu", (error) => { return error })
 }
 
 export const decodeToken = (token) => {

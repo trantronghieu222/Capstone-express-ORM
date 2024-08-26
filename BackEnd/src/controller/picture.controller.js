@@ -7,7 +7,11 @@ const model = initModels(sequelize);
 
 // Lấy ds ảnh
 export const getPicture = async (req, res) => {
-    const data = await model.hinh_anh.findAll();
+    const data = await model.hinh_anh.findAll({
+        where: {
+            is_deleted: 0
+        }
+    });
     reponseData(data, "Thành công", 200, res);
 }
 
@@ -18,7 +22,8 @@ export const searchPictureByName = async (req, res) => {
         where: {
             ten_hinh: {
                 [Op.like]: `%${name}%`
-            }
+            },
+            is_deleted: 0
         }
     })
     reponseData(data, "Thành công", 200, res);
@@ -29,7 +34,8 @@ export const getPictureAndUsers = async (req, res) => {
     const { pictureId } = req.params;
     const data = await model.hinh_anh.findOne({
         where: {
-            hinh_id: pictureId
+            hinh_id: pictureId,
+            is_deleted: 0
         },
         include: ["nguoi_dung"]
     })
@@ -41,7 +47,7 @@ export const getCommentPicture = async (req, res) => {
     const { pictureId } = req.params;
     const data = await model.binh_luan.findAll({
         where: {
-            hinh_id: pictureId
+            hinh_id: pictureId,
         }
     })
     reponseData(data, "Thành công", 200, res);
@@ -62,19 +68,24 @@ export const getSavedPictureStatus = async (req, res) => {
 export const delPicture = async (req, res) => {
     const { pictureId } = req.params;
     try {
-        await model.hinh_anh.destroy({
+        const result = await model.hinh_anh.update({
+            is_deleted: 1
+        }, {
             where: {
                 hinh_id: pictureId
             }
-        })
-        reponseData("", "Thành công", 200, res);
+        });
+        if (result[0] === 0) {
+            return reponseData("", "Hình ảnh không tồn tại hoặc đã bị xoá", 404, res);
+        }
+        reponseData("", "Xoá hình ảnh thành công", 200, res);
     } catch (error) {
         reponseData("", "Lỗi khi xoá", 400, res);
     }
 }
 
 // Thêm hình ảnh
-export const addPicture =  async (req, res) => {
+export const addPicture = async (req, res) => {
     try {
         let file = req.file;
         let { imgName, description, userId } = req.body;
@@ -86,12 +97,12 @@ export const addPicture =  async (req, res) => {
         // Đường dẫn đến file đã upload
         let filePath = file.filename;
 
-        // Thêm thông tin ảnh vào bảng `hinh_anh` bằng cách sử dụng `.create`
         const newImage = await model.hinh_anh.create({
             ten_hinh: imgName,
             duong_dan: filePath,
             mo_ta: description,
-            nguoi_dung_id: userId
+            nguoi_dung_id: userId,
+            is_deleted: 0
         });
 
         reponseData(newImage, "Thêm thành công", 200, res);
