@@ -25,7 +25,7 @@ Dự án backend này được xây dựng bằng **Node.js** với **Express.js
 
 - **Get Thông Tin Bình Luận Theo Id Ảnh**: \`GET /localhost:8080/picture/get-commentPicture/:pictureId\`
 
-- **Lấy Thông Tin Đã Lưu Hình Này Chưa Theo Id Ảnh**: \`GET /localhost:8080/picture/get-statusPicture/:pictureId\`
+- **Get Thông Tin Đã Lưu Hình Này Chưa Theo Id Ảnh**: \`GET /localhost:8080/picture/get-statusPicture/:pictureId\`
   - Chỉ dành cho người dùng đã xác thực.
 
 - **Post Thêm Một Ảnh Của User**: \`Post /localhost:8080/picture/create-picture\`
