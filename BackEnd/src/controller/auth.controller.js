@@ -40,8 +40,13 @@ export const signIn = async (req, res) => {
 
     if (checkEmail) {
         if (bcrypt.compareSync(matKhau, checkEmail.mat_khau)) {
-            let token = createToken({nguoiDungId: checkEmail.dataValues.nguoi_dung_id});
-            reponseData(token, "Đăng nhập thành công", 200, res)
+            let token = createToken({ nguoiDungId: checkEmail.dataValues.nguoi_dung_id });
+            reponseData({
+                email: checkEmail.email,
+                ho_ten: checkEmail.ho_ten,
+                tuoi: checkEmail.tuoi, 
+                token
+            }, "Đăng nhập thành công", 200, res)
         }
         else {
             reponseData("", "Mật khẩu không đúng", 403, res)

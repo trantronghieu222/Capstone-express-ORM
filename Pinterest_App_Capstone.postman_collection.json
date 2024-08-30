@@ -1,0 +1,447 @@
+{
+	"info": {
+		"_postman_id": "71059fde-e7ce-48d1-9d3f-7e93ca6b6b11",
+		"name": "Pinterest_App_Capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36585890"
+	},
+	"item": [
+		{
+			"name": "signUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"tranhieu123@gmail.com\",\r\n    \"matKhau\": \"123456\",\r\n    \"hoTen\": \"Trần Trọng Hiếu\",\r\n    \"tuoi\": \"22\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/auth/sign-up",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"auth",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"tranhieu123@gmail.com\",\r\n    \"matKhau\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/auth/sign-in",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"auth",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPictureList",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pRHVuZ0lkIjoxfSwiaWF0IjoxNzI0Njc5MDU5LCJleHAiOjE3MjUxMTEwNTl9.N4RGiTX0hkJnEQ42wqrH7H7kU5i5Hn8j9zRjB7Cd0vs",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{domain}}/picture/get-picture",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"picture",
+						"get-picture"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchPicturesByName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/picture/search-picture?name=spy",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"picture",
+						"search-picture"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "spy"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPictureAndCreatorById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/picture/get-picture-id/1",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"picture",
+						"get-picture-id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCommentsByPictureId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/picture/get-commentPicture/1",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"picture",
+						"get-commentPicture",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CheckPictureSavedById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/picture/get-statusPicture/1",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"picture",
+						"get-statusPicture",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CommentPicture",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pRHVuZ0lkIjo3fSwiaWF0IjoxNzI1MDA0OTQ2LCJleHAiOjE3MjU0MzY5NDZ9.59Nkcu55NKj4EkZbIkFt0AkNPT2cWhAbyHlYid6ezvE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 7,\r\n    \"commentDate\": \"2024-08-14\",\r\n    \"commentContent\": \"Ảnh đẹp quá\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/user/comment/5",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"comment",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserInfo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pRHVuZ0lkIjo3fSwiaWF0IjoxNzI1MDA0OTQ2LCJleHAiOjE3MjU0MzY5NDZ9.59Nkcu55NKj4EkZbIkFt0AkNPT2cWhAbyHlYid6ezvE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{domain}}/user/get-profile/7",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"get-profile",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSavedPicturesByUserId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pRHVuZ0lkIjo3fSwiaWF0IjoxNzI1MDA0OTQ2LCJleHAiOjE3MjU0MzY5NDZ9.59Nkcu55NKj4EkZbIkFt0AkNPT2cWhAbyHlYid6ezvE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{domain}}/user/saved-picture/7",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"saved-picture",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCreatedPicturesByUserId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pRHVuZ0lkIjo3fSwiaWF0IjoxNzI1MDA0OTQ2LCJleHAiOjE3MjU0MzY5NDZ9.59Nkcu55NKj4EkZbIkFt0AkNPT2cWhAbyHlYid6ezvE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{domain}}/user/created-picture/7",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"created-picture",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePictureById",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pRHVuZ0lkIjo3fSwiaWF0IjoxNzI1MDA0OTQ2LCJleHAiOjE3MjU0MzY5NDZ9.59Nkcu55NKj4EkZbIkFt0AkNPT2cWhAbyHlYid6ezvE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/picture/delete-picture/12",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"picture",
+						"delete-picture",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePicture",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pRHVuZ0lkIjo3fSwiaWF0IjoxNzI1MDA0OTQ2LCJleHAiOjE3MjU0MzY5NDZ9.59Nkcu55NKj4EkZbIkFt0AkNPT2cWhAbyHlYid6ezvE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "fileImg",
+							"type": "file",
+							"src": "/C:/Users/Admin/Downloads/hinh-nen-ngau-2.jpg"
+						},
+						{
+							"key": "imgName",
+							"value": "Hình nền ngầu 2",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Những cảnh đẹp buồn tận cùng",
+							"type": "text"
+						},
+						{
+							"key": "userId",
+							"value": "7",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/picture/create-picture",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"picture",
+						"create-picture"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUserInfo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Im5ndW9pRHVuZ0lkIjo3fSwiaWF0IjoxNzI1MDA0OTQ2LCJleHAiOjE3MjU0MzY5NDZ9.59Nkcu55NKj4EkZbIkFt0AkNPT2cWhAbyHlYid6ezvE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "avtImg",
+							"type": "file",
+							"src": "/C:/Users/Admin/Downloads/Avatar Doremon cute-doi-mu.jpg"
+						},
+						{
+							"key": "email",
+							"value": "tranhieu123@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "username",
+							"value": "Trần Hiếu",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "25",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{domain}}/user/update-profile/7",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"user",
+						"update-profile",
+						"7"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "domain",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
